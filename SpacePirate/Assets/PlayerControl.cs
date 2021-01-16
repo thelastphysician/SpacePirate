@@ -18,17 +18,16 @@ public class PlayerControl : MonoBehaviour
     GameObject GameController;
     public GameData Data;
 
-    Rigidbody RB;
     // Start is called before the first frame update
     void Start()
     {
-        RB = GetComponent<Rigidbody>();
-
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        
+        //Movement
         float verticalAxis;
         float horizontalAxis;
 
@@ -45,8 +44,23 @@ public class PlayerControl : MonoBehaviour
             Mathf.Clamp(((verticalAxis * StrafeSpeed * Time.deltaTime * yBorderMult) + transform.position.y),Bottom, Top),
 
             0f);
-        RB.velocity = new Vector3();
 
+        //End Movement
+
+    }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+
+        if(collision.gameObject.tag == "Obsticle")
+        {
+            --Data.Hull;
+     
+        }
+        else if(collision.gameObject.tag == "Boost")
+        {
+            ++Data.Hull;
+        }
     }
 
 }

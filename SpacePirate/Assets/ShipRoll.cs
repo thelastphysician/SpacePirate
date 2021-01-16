@@ -6,13 +6,11 @@ public class ShipRoll : MonoBehaviour
 {
     public float RollMult = 1;
     public float PitchMult = -50;
-    Rigidbody RB;
 
     Vector3 PrevPos;
     // Start is called before the first frame update
     void Start()
     {
-        RB = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
