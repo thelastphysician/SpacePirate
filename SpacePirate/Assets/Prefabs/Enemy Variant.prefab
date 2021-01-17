@@ -13,7 +13,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1105346426325247180, guid: aba7a78f4c3515844a23a4d33a877467, type: 3}
       propertyPath: ResetDistance
-      value: 25
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 1105346426325247180, guid: aba7a78f4c3515844a23a4d33a877467, type: 3}
       propertyPath: ResetStartPlace
