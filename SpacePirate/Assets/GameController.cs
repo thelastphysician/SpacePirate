@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -21,11 +22,17 @@ public class GameController : MonoBehaviour
     public GameObject GameOver;
 
     public TextMeshProUGUI HullText;
+    public TextMeshProUGUI ScoreText;
+
+    public TextMeshProUGUI PauseScore;
+    public TextMeshProUGUI GameOverScore;
 
     private void Awake()
     {
         Data.Hull = Data.MaxHull;
         Data.Energy = Data.MaxEnergy;
+        Data.Score = 0;
+        Time.timeScale = 1f;
     }
     // Start is called before the first frame update
     void Start()
@@ -50,6 +57,7 @@ public class GameController : MonoBehaviour
                 IsPlaying = false;
                 Hud.SetActive(false);
                 Pause.SetActive(true);
+                PauseScore.text = "HIGH SCORE: " + Data.MaxEnergy + "\nTHIS SCORE: " + Data.Score;
             }
             else
             {
@@ -68,12 +76,27 @@ public class GameController : MonoBehaviour
             Hud.SetActive(false);
             Pause.SetActive(false);
             GameOver.SetActive(true);
+            GameOverScore.text = "HIGH SCORE: " + Data.MaxEnergy + "\nTHIS SCORE: " + Data.Score;
         }
 
+        //HUD elements
         string hullstr = "";
         for(int i = 0; i < Data.Hull; ++i) {
             hullstr = hullstr + "/";
         }
         HullText.text = hullstr;
+
+        ScoreText.text = Data.Score.ToString();
+        if(Data.Score > Data.MaxScore)
+        {
+            Data.MaxScore = Data.Score;
+        }
+
     }
+    public void ButtonRestart()
+    {
+        SceneManager.LoadScene(0);
+
+    }
+
 }

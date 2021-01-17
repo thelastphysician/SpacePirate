@@ -5,7 +5,7 @@ using UnityEngine;
 public class ObsticleScript : MonoBehaviour
 {
     public float DestroyPosition = -20f;
-    public GameObject GC;
+     GameObject GC;
     public float Speed;
     // Start is called before the first frame update
     void Start()
