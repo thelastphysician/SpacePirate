@@ -27,6 +27,7 @@ public class GameController : MonoBehaviour
     public TextMeshProUGUI PauseScore;
     public TextMeshProUGUI GameOverScore;
 
+
     private void Awake()
     {
         Data.Hull = Data.MaxHull;
@@ -49,6 +50,7 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (Input.GetKeyDown(PauseKey))
         {
             if (IsPlaying)

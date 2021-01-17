@@ -15,10 +15,17 @@ public class SpawnerScript : MonoBehaviour
     public float Right = 20f;
 
     private float countdown;
+
+    GameObject GC;
+    public float Speed;
     // Start is called before the first frame update
     void Start()
     {
         countdown = frequency + Random.Range(frequency-varience, frequency + varience);
+        GC = GameObject.FindGameObjectWithTag("GameController");
+        Speed = GC.GetComponent<GameController>().GlobalSpeedMult;
+
+        frequency = frequency / Speed;
     }
 
     // Update is called once per frame
@@ -27,7 +34,7 @@ public class SpawnerScript : MonoBehaviour
         if(countdown <= 0f)
         {
             SpawnObjects();
-            countdown = frequency;
+            countdown = frequency + Random.Range(frequency - varience, frequency + varience);
         }
 
         --countdown;

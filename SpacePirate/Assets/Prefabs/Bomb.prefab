@@ -130,6 +130,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: bd5d1d9503f305547ab8d3bdfbea5763, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f8a91287b0a1b0d4daddf343f30d8a55, type: 2}
     - target: {fileID: 919132149155446097, guid: bd5d1d9503f305547ab8d3bdfbea5763, type: 3}
       propertyPath: m_Name
       value: BombMesh

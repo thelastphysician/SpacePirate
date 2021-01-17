@@ -12,7 +12,8 @@ public class PlayerControl : MonoBehaviour
     public float Left = -20f;
     public float Right = 20f;
     public float ShotThickness = .5f;
-    public GameObject Explosion;
+    public GameObject ObsticleExplosion;
+    public GameObject EnemyExplosion;
     public GameObject CollisionExplosion;
     public GameObject GaussEffect;
 
@@ -43,7 +44,8 @@ public class PlayerControl : MonoBehaviour
         float verticalAxis;
         float horizontalAxis;
 
-        verticalAxis = Input.GetAxis("Vertical");
+        //verticalAxis = Input.GetAxis("Vertical");
+        verticalAxis = 0f;
         horizontalAxis = Input.GetAxis("Horizontal");
 
 
@@ -76,24 +78,18 @@ public class PlayerControl : MonoBehaviour
         }
         //draw the laser
 
-        if (GaussVisualTimeCountdown >= GaussVisualTime && Input.GetButtonDown("Fire1"))
+            RaycastHit hit;
+
+        if (Input.GetButtonDown("Fire1") && GaussVisualTimeCountdown >= GaussVisualTime)
         {
-
-
             GaussVisualTimeCountdown = 0f;
 
             GameObject GaussEffectInstance = Instantiate(GaussEffect, transform);
             GaussEffectInstance.transform.rotation = Quaternion.Euler(0, 0, 0);
             GaussEffectInstance.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + 5);
-        }
-            RaycastHit hit;
 
-        if (Physics.SphereCast(transform.position,ShotThickness, transform.forward, out hit, Data.Range))
-        {
 
-            
-
-            if (GaussVisualTimeCountdown >= GaussVisualTime && Input.GetButtonDown("Fire1"))
+            if (Physics.SphereCast(transform.position, ShotThickness, transform.forward, out hit, Data.Range))
             {
 
 
@@ -101,14 +97,17 @@ public class PlayerControl : MonoBehaviour
 
                 if(hit.collider.gameObject.tag == "Obsticle")
                 {
-                    Instantiate(Explosion,hit.collider.gameObject.transform.position, Random.rotation);
+                    
+                    GameObject CreatedExpl = Instantiate(ObsticleExplosion,hit.collider.gameObject.transform.position, transform.rotation);
+                    CreatedExpl.transform.rotation = Quaternion.Euler(180, 0, 0);
                     Destroy(hit.collider.gameObject);
                     ++Data.Score;
                 }
 
-                if (hit.collider.gameObject.tag == "Enemy")
+                else if(hit.collider.gameObject.tag == "Enemy")
                 {
-                    Instantiate(Explosion, hit.collider.gameObject.transform.position, Random.rotation);
+                    GameObject CreatedExpl = Instantiate(EnemyExplosion, hit.collider.gameObject.transform.position, transform.rotation);
+                    CreatedExpl.transform.rotation = Quaternion.Euler(180, 0, 0);
                     Destroy(hit.collider.gameObject);
                     Data.Score +=5;
                 }

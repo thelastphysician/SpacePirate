@@ -51,9 +51,9 @@ MonoBehaviour:
   StrafeSpeed: 0.2
   ForwardSpeed: 0.25
   StrafeVariance: 120
-  ResetDistance: 20
-  ResetStartPlace: 200
-  ResetSpeed: 1
+  ResetDistance: 25
+  ResetStartPlace: 150
+  ResetSpeed: 0.755
   FireTime: 20
   FireRate: 1
   BlendKey: {fileID: 4997600800359173486}
