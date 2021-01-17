@@ -95,6 +95,12 @@ public class GameController : MonoBehaviour
     }
     public void ButtonRestart()
     {
+        SceneManager.LoadScene(1);
+
+    }
+
+    public void ButtonMainMenu()
+    {
         SceneManager.LoadScene(0);
 
     }

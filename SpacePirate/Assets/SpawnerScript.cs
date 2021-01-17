@@ -22,7 +22,7 @@ public class SpawnerScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if(countdown <= 0f)
         {

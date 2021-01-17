@@ -5,8 +5,9 @@ using UnityEngine;
 public class ObsticleScript : MonoBehaviour
 {
     public float DestroyPosition = -20f;
-     GameObject GC;
+    GameObject GC;
     public float Speed;
+    public GameObject Explosion;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,5 +24,10 @@ public class ObsticleScript : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void OnDestroy()
+    {
+        Instantiate(Explosion, transform);
     }
 }
