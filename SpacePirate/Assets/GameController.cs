@@ -57,7 +57,7 @@ public class GameController : MonoBehaviour
                 IsPlaying = false;
                 Hud.SetActive(false);
                 Pause.SetActive(true);
-                PauseScore.text = "HIGH SCORE: " + Data.MaxEnergy + "\nTHIS SCORE: " + Data.Score;
+                PauseScore.text = "HIGH SCORE: " + Data.MaxScore + "\nTHIS SCORE: " + Data.Score;
             }
             else
             {
@@ -76,7 +76,7 @@ public class GameController : MonoBehaviour
             Hud.SetActive(false);
             Pause.SetActive(false);
             GameOver.SetActive(true);
-            GameOverScore.text = "HIGH SCORE: " + Data.MaxEnergy + "\nTHIS SCORE: " + Data.Score;
+            GameOverScore.text = "HIGH SCORE: " + Data.MaxScore + "\nTHIS SCORE: " + Data.Score;
         }
 
         //HUD elements
