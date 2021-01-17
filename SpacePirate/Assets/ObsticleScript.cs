@@ -26,8 +26,4 @@ public class ObsticleScript : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
-    {
-        Instantiate(Explosion, transform);
-    }
 }

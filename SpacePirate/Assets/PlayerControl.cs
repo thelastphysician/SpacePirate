@@ -12,6 +12,7 @@ public class PlayerControl : MonoBehaviour
     public float Left = -20f;
     public float Right = 20f;
     public float ShotThickness = .5f;
+    public GameObject Explosion;
 
     public float xBorderMult = 1f;
     public float yBorderMult = 1f;
@@ -71,6 +72,7 @@ public class PlayerControl : MonoBehaviour
 
                 if(hit.collider.gameObject.tag == "Obsticle")
                 {
+                    Instantiate(Explosion,hit.collider.gameObject.transform);
                     Destroy(hit.collider.gameObject);
                     ++Data.Score;
                 }
