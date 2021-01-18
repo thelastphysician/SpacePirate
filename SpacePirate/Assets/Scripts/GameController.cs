@@ -36,6 +36,7 @@ public class GameController : MonoBehaviour
         Data.Energy = Data.MaxEnergy;
         Data.Score = 0;
         Time.timeScale = 1f;
+        Cursor.visible = false;
 
     }
     // Start is called before the first frame update
@@ -51,6 +52,10 @@ public class GameController : MonoBehaviour
 
     }
 
+    private void FixedUpdate()
+    {
+        GlobalSpeedMult += .0005f;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -64,12 +69,13 @@ public class GameController : MonoBehaviour
             PrevHull = Data.Hull;
         }
 
-            if (Input.GetKeyDown(PauseKey))
+        if (Input.GetKeyDown(PauseKey))
         {
             if (IsPlaying)
             {
                 Time.timeScale = 0f;
                 IsPlaying = false;
+                Cursor.visible = true;
                 Hud.SetActive(false);
                 Pause.SetActive(true);
                 PauseScore.text = "HIGH SCORE: " + Data.MaxScore + "\nTHIS SCORE: " + Data.Score;
@@ -80,6 +86,7 @@ public class GameController : MonoBehaviour
                 IsPlaying = true;
                 Pause.SetActive(false);
                 Hud.SetActive(true);
+                Cursor.visible = false;
             }
         }
 
@@ -88,6 +95,7 @@ public class GameController : MonoBehaviour
         {
             Time.timeScale = 0f;
             IsPlaying = false;
+            Cursor.visible = true;
             Hud.SetActive(false);
             Pause.SetActive(false);
             GameOver.SetActive(true);
@@ -112,9 +120,10 @@ public class GameController : MonoBehaviour
     public void ButtonResume()
     {
         Time.timeScale = 1f;
-                IsPlaying = true;
-                Pause.SetActive(false);
-                Hud.SetActive(true);
+        IsPlaying = true;
+        Cursor.visible = false;
+        Pause.SetActive(false);
+        Hud.SetActive(true);
     }
     public void ButtonRestart()
     {
@@ -124,6 +133,7 @@ public class GameController : MonoBehaviour
 
     public void ButtonMainMenu()
     {
+        Cursor.visible = true;
         SceneManager.LoadScene(0);
 
     }

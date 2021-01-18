@@ -15566,11 +15566,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 42f2b7692d64a1f4ca93c12a044ffbef, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -15722,6 +15722,11 @@ MonoBehaviour:
   CollisionExplosion: {fileID: 100008, guid: 7075bd5fe1480184695a32611c15da57, type: 3}
   GaussEffect: {fileID: 8270144517931447274, guid: 9c0062e0c3826fd40808e9dbfaf7111b, type: 3}
   Shield: {fileID: 748003873}
+  SoundsArray:
+  - {fileID: 8300000, guid: 091e3304f6f38284aa768d14b7cf34a0, type: 3}
+  - {fileID: 8300000, guid: 801187a9249f21348bc34253050dae2e, type: 3}
+  - {fileID: 8300000, guid: d6d02e6e86167074e9bae56f8be8c38b, type: 3}
+  - {fileID: 8300000, guid: a6a14933d1087ca4ca0a27e16b4daaa5, type: 3}
   xBorderMult: 1
   yBorderMult: 1
   Data: {fileID: 11400000, guid: 6dd16b77eb6752a4d86dccc3e2bbfff3, type: 2}

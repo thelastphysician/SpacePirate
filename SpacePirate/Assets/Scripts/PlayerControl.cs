@@ -19,7 +19,10 @@ public class PlayerControl : MonoBehaviour
     public GameObject GaussEffect;
     public GameObject Shield;
 
-    AudioSource GaussSound;
+    public AudioClip[] SoundsArray;
+    //0-Gauss, 1-Player Dmg, 2-Regular Health, 3-Overshield
+
+    AudioSource PlayerAudio;
 
     public float xBorderMult = 1f;
     public float yBorderMult = 1f;
@@ -39,7 +42,7 @@ public class PlayerControl : MonoBehaviour
         Gauss = GetComponent<LineRenderer>();
         GaussVisualTimeCountdown = GaussVisualTime;
         Shield.SetActive(false);
-        GaussSound = gameObject.GetComponent<AudioSource>();
+        PlayerAudio = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -89,7 +92,8 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetButtonDown("Fire1") && GaussVisualTimeCountdown >= GaussVisualTime)
         {
             GaussVisualTimeCountdown = 0f;
-            GaussSound.Play();
+            PlayerAudio.clip = SoundsArray[0];
+            PlayerAudio.Play();
 
             GameObject GaussEffectInstance = Instantiate(GaussEffect, transform);
             GaussEffectInstance.transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -140,7 +144,10 @@ public class PlayerControl : MonoBehaviour
             }
             Instantiate(CollisionExplosion, transform);
             Destroy(collision.gameObject);
-     
+
+            PlayerAudio.clip = SoundsArray[1];
+            PlayerAudio.Play();
+
         }
        else if (collision.gameObject.tag == "Enemy")
         {
@@ -151,6 +158,9 @@ public class PlayerControl : MonoBehaviour
             }
             Instantiate(CollisionExplosion, transform);
 
+            PlayerAudio.clip = SoundsArray[1];
+            PlayerAudio.Play();
+
 
         }
         else if(collision.gameObject.tag == "Boost")
@@ -160,15 +170,34 @@ public class PlayerControl : MonoBehaviour
                 ++Data.Hull;
                 Instantiate(HealthExplosion, transform);
                 Destroy(collision.gameObject);
+                PlayerAudio.clip = SoundsArray[2];
+                PlayerAudio.Play();
 
             }
             else if(Data.Hull  == Data.MaxHull)
             {
                 ++Data.Hull;
                 Shield.SetActive(true);
+                PlayerAudio.clip = SoundsArray[3];
+                PlayerAudio.Play();
             }
            
         }
+    }
+
+    private void OnDestroy()
+    {
+        PlayerPrefs.SetInt("MaxScore",Data.MaxScore);
+        PlayerPrefs.SetFloat("Volume",Data.Volume);
+        if (Data.isFullscreen)
+        {
+            PlayerPrefs.SetInt("Fullscreen", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("Fullscreen", 0);
+        }
+        
     }
 
 }
