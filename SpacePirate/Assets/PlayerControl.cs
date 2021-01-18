@@ -130,6 +130,12 @@ public class PlayerControl : MonoBehaviour
             Instantiate(CollisionExplosion, transform);
      
         }
+       else if (collision.gameObject.tag == "Enemy")
+        {
+            --Data.Hull;
+            Instantiate(CollisionExplosion, transform);
+
+        }
         else if(collision.gameObject.tag == "Boost")
         {
             ++Data.Hull;

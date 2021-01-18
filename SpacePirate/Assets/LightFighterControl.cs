@@ -16,32 +16,37 @@ public class LightFighterControl : MonoBehaviour
     GameObject GC;
     float Speed;
     float random;
-
+    TrailRenderer Trail;
     // Start is called before the first frame update
     void Start()
     {
         GC = GameObject.FindGameObjectWithTag("GameController");
         Speed = GC.GetComponent<GameController>().GlobalSpeedMult;
+        Trail = GetComponent<TrailRenderer>();
         random = Random.Range(0f,1f);
         HoldTimeCountdown = HoldTime;
         HoldDistance += Random.Range(-5, 10);
+        Trail.time = 0f;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
 
-        if(transform.position.z > HoldDistance)
+        if(transform.position.z > HoldDistance && ! (HoldTimeCountdown < HoldTime))
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + Speed * -1);
         }
         else if (HoldTime /4 >= HoldTimeCountdown && HoldTimeCountdown > 0f)
         {
             --HoldTimeCountdown;
-            BlendKey.SetBlendShapeWeight(0, 1 / (HoldTimeCountdown) * 100);
+            Trail.time = 1f;
+            BlendKey.SetBlendShapeWeight(0, Mathf.Min((1 / (HoldTimeCountdown) * 100),100));
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + Speed/6);
         }
         else if (HoldTimeCountdown <= 0f)
         {
+            transform.localScale = new Vector3(1, 1, 2);
             transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + Speed * -1 * BoostMult);
         }
         else

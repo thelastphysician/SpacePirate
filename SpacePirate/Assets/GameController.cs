@@ -95,6 +95,14 @@ public class GameController : MonoBehaviour
         }
 
     }
+
+    public void ButtonResume()
+    {
+        Time.timeScale = 1f;
+        IsPlaying = true;
+        Pause.SetActive(false);
+        Hud.SetActive(true);
+    }
     public void ButtonRestart()
     {
         SceneManager.LoadScene(1);
