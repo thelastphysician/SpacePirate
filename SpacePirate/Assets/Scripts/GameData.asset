@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aae1df268a32ac4bb0233358d3eebf7, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
-  MaxScore: 0
+  MaxScore: 387
   MaxHull: 3
   MaxEnergy: 100
   BaseFirerate: 10

@@ -17,6 +17,9 @@ public class PlayerControl : MonoBehaviour
     public GameObject HealthExplosion;
     public GameObject CollisionExplosion;
     public GameObject GaussEffect;
+    public GameObject Shield;
+
+    AudioSource GaussSound;
 
     public float xBorderMult = 1f;
     public float yBorderMult = 1f;
@@ -35,6 +38,8 @@ public class PlayerControl : MonoBehaviour
     {
         Gauss = GetComponent<LineRenderer>();
         GaussVisualTimeCountdown = GaussVisualTime;
+        Shield.SetActive(false);
+        GaussSound = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -84,6 +89,7 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetButtonDown("Fire1") && GaussVisualTimeCountdown >= GaussVisualTime)
         {
             GaussVisualTimeCountdown = 0f;
+            GaussSound.Play();
 
             GameObject GaussEffectInstance = Instantiate(GaussEffect, transform);
             GaussEffectInstance.transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -128,6 +134,10 @@ public class PlayerControl : MonoBehaviour
         if(collision.gameObject.tag == "Obsticle")
         {
             --Data.Hull;
+            if(Data.Hull == Data.MaxHull)
+            {
+                Shield.SetActive(false);
+            }
             Instantiate(CollisionExplosion, transform);
             Destroy(collision.gameObject);
      
@@ -135,15 +145,29 @@ public class PlayerControl : MonoBehaviour
        else if (collision.gameObject.tag == "Enemy")
         {
             --Data.Hull;
+            if (Data.Hull == Data.MaxHull)
+            {
+                Shield.SetActive(false);
+            }
             Instantiate(CollisionExplosion, transform);
 
 
         }
         else if(collision.gameObject.tag == "Boost")
         {
-            ++Data.Hull;
-            Instantiate(HealthExplosion, transform);
-            Destroy(collision.gameObject);
+            if(Data.Hull < Data.MaxHull)
+            {
+                ++Data.Hull;
+                Instantiate(HealthExplosion, transform);
+                Destroy(collision.gameObject);
+
+            }
+            else if(Data.Hull  == Data.MaxHull)
+            {
+                ++Data.Hull;
+                Shield.SetActive(true);
+            }
+           
         }
     }
 
