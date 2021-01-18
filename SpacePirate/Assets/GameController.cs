@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -12,7 +13,6 @@ public class GameController : MonoBehaviour
     public float GlobalSpeedMult = 1f;
 
     public GameData Data;
-
 
 
     bool IsPlaying = true;
@@ -27,6 +27,8 @@ public class GameController : MonoBehaviour
     public TextMeshProUGUI PauseScore;
     public TextMeshProUGUI GameOverScore;
 
+    int PrevHull;
+
 
     private void Awake()
     {
@@ -34,6 +36,7 @@ public class GameController : MonoBehaviour
         Data.Energy = Data.MaxEnergy;
         Data.Score = 0;
         Time.timeScale = 1f;
+
     }
     // Start is called before the first frame update
     void Start()
@@ -43,15 +46,25 @@ public class GameController : MonoBehaviour
         Hud.SetActive(true);
         Pause.SetActive(false);
         GameOver.SetActive(false);
-
+        
+        PrevHull = Data.Hull;
 
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(PrevHull > Data.Hull)
+        {
+            Hud.GetComponent<Image>().color = new Color(1f,0,0, Hud.GetComponent<Image>().color.a + .15f);
+            PrevHull = Data.Hull;
+        }else if(PrevHull < Data.Hull)
+        {
+            Hud.GetComponent<Image>().color = new Color(1f, 0, 0, Hud.GetComponent<Image>().color.a - .15f);
+            PrevHull = Data.Hull;
+        }
 
-        if (Input.GetKeyDown(PauseKey))
+            if (Input.GetKeyDown(PauseKey))
         {
             if (IsPlaying)
             {
@@ -99,9 +112,9 @@ public class GameController : MonoBehaviour
     public void ButtonResume()
     {
         Time.timeScale = 1f;
-        IsPlaying = true;
-        Pause.SetActive(false);
-        Hud.SetActive(true);
+                IsPlaying = true;
+                Pause.SetActive(false);
+                Hud.SetActive(true);
     }
     public void ButtonRestart()
     {

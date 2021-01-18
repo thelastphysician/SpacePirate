@@ -1712,6 +1712,7 @@ MonoBehaviour:
   PauseKey: 27
   GlobalSpeedMult: 2
   Data: {fileID: 11400000, guid: 6dd16b77eb6752a4d86dccc3e2bbfff3, type: 2}
+  Image: {fileID: 9142266575675733087}
   Hud: {fileID: 9142266575675733087}
   Pause: {fileID: 2903041995811554137}
   GameOver: {fileID: 6007946661135943429}

@@ -14,6 +14,7 @@ public class PlayerControl : MonoBehaviour
     public float ShotThickness = .5f;
     public GameObject ObsticleExplosion;
     public GameObject EnemyExplosion;
+    public GameObject HealthExplosion;
     public GameObject CollisionExplosion;
     public GameObject GaussEffect;
 
@@ -128,6 +129,7 @@ public class PlayerControl : MonoBehaviour
         {
             --Data.Hull;
             Instantiate(CollisionExplosion, transform);
+            Destroy(collision.gameObject);
      
         }
        else if (collision.gameObject.tag == "Enemy")
@@ -135,10 +137,13 @@ public class PlayerControl : MonoBehaviour
             --Data.Hull;
             Instantiate(CollisionExplosion, transform);
 
+
         }
         else if(collision.gameObject.tag == "Boost")
         {
             ++Data.Hull;
+            Instantiate(HealthExplosion, transform);
+            Destroy(collision.gameObject);
         }
     }
 

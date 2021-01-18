@@ -157,7 +157,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 6029ae1e3ed5d3f4fafe1206b40f42a7, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: bb0e230e6ad34b84b94998832e46d420, type: 2}
+      objectReference: {fileID: 2100000, guid: 45733cbd32244524db9c58225ec0a292, type: 2}
     - target: {fileID: 919132149155446097, guid: 6029ae1e3ed5d3f4fafe1206b40f42a7, type: 3}
       propertyPath: m_Name
       value: BomberMesh

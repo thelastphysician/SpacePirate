@@ -21,6 +21,8 @@ public class EnemyController : MonoBehaviour
     float StrafeResetTime;
     float FireResetTime;
 
+    float Bounds = 20f;
+
     enum States {MoveRight,MoveLeft, Fireing, Resetting };
 
     GameObject GC;
@@ -105,6 +107,14 @@ public class EnemyController : MonoBehaviour
 
                 break;
 
+        }
+
+        if(transform.position.x > Bounds)
+        {
+            transform.position = new Vector3(Bounds, transform.position.y, transform.position.z);
+        }else if (transform.position.x < -1*Bounds)
+        {
+            transform.position = new Vector3(-1 *Bounds, transform.position.y, transform.position.z);
         }
     }
 }

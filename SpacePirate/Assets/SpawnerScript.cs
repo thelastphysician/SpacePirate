@@ -44,7 +44,8 @@ public class SpawnerScript : MonoBehaviour
     {
         GameObject newObs = Instantiate(Obsicles[Random.Range(0,Obsicles.Length)],transform);
 
-        newObs.transform.position = new Vector3( Random.Range(transform.position.x - 15, transform.position.x + 15), transform.position.y, transform.position.z);
+        newObs.transform.position = new Vector3( Random.Range(transform.position.x + Left, transform.position.x + Right), transform.position.y, transform.position.z);
+
     }
 
 
