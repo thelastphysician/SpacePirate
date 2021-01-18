@@ -70,7 +70,7 @@ public class PlayerControl : MonoBehaviour
 
         //End Movement
 
-        //Shoot
+        //draw the laser
         Gauss.SetPosition(0, transform.position);
         Gauss.SetPosition(1, transform.position + transform.forward * Data.Range);
 
@@ -85,15 +85,25 @@ public class PlayerControl : MonoBehaviour
             Gauss.startWidth = 2;
             Gauss.endWidth = 1;
         }
-        //draw the laser
 
-            RaycastHit hit;
 
-        if (Input.GetButtonDown("Fire1") && GaussVisualTimeCountdown >= GaussVisualTime)
+
+
+
+        //Shoot
+
+        if (Data.Energy < Data.MaxEnergy)
+        {
+            Data.Energy += Data.RechargeRate;
+        }
+        RaycastHit hit;
+
+        if (Input.GetButtonDown("Fire1") && Data.Energy >= Data.MaxEnergy - 10f)
         {
             GaussVisualTimeCountdown = 0f;
             PlayerAudio.clip = SoundsArray[0];
             PlayerAudio.Play();
+            Data.Energy = 0f;
 
             GameObject GaussEffectInstance = Instantiate(GaussEffect, transform);
             GaussEffectInstance.transform.rotation = Quaternion.Euler(0, 0, 0);

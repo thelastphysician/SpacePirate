@@ -27,6 +27,8 @@ public class GameController : MonoBehaviour
     public TextMeshProUGUI PauseScore;
     public TextMeshProUGUI GameOverScore;
 
+    public RectTransform EnergyBar;
+
     int PrevHull;
 
 
@@ -50,6 +52,8 @@ public class GameController : MonoBehaviour
         
         PrevHull = Data.Hull;
 
+        
+
     }
 
     private void FixedUpdate()
@@ -59,13 +63,16 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(PrevHull > Data.Hull)
+
+        EnergyBar.offsetMax = new Vector2(EnergyBar.offsetMax.x, Data.Energy);
+
+        if (PrevHull > Data.Hull)
         {
-            Hud.GetComponent<Image>().color = new Color(1f,0,0, Hud.GetComponent<Image>().color.a + .15f);
+            Hud.GetComponent<Image>().color = new Color(1f,0,0, Hud.GetComponent<Image>().color.a + .07f);
             PrevHull = Data.Hull;
         }else if(PrevHull < Data.Hull)
         {
-            Hud.GetComponent<Image>().color = new Color(1f, 0, 0, Hud.GetComponent<Image>().color.a - .15f);
+            Hud.GetComponent<Image>().color = new Color(1f, 0, 0, Hud.GetComponent<Image>().color.a - .07f);
             PrevHull = Data.Hull;
         }
 

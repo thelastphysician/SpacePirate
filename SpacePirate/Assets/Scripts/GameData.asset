@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aae1df268a32ac4bb0233358d3eebf7, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
-  MaxScore: 0
+  MaxScore: 36
   MaxHull: 3
   MaxEnergy: 100
-  BaseFirerate: 10
+  RechargeRate: 8
   Range: 200
   Volume: 0.255
   isFullscreen: 1
-  Hull: 0
-  Energy: 100
+  Hull: 3
+  Energy: 102
   Score: 0
